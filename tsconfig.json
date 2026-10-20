@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "types": ["node", "vite/client", "jest"],
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  // 分层边界：
+  // - legacy/   剥离 AI Studio 前的历史快照，只归档，不参与检查与构建
+  // - cypress/  自带 chai 的全局 expect，与 jest 冲突，交给 e2e 自己的配置
+  // - __tests__ 由 tsconfig.test.json 单独检查（jest 环境 + CommonJS）
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "legacy",
+    "cypress",
+    "src/**/__tests__/**",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ]
+}

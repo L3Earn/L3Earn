@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2Earn Protocol Whitepaper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        indigo: {
+                            900: '#312e81',
+                            800: '#3730a3',
+                            600: '#4f46e5',
+                            500: '#6366f1',
+                            50: '#eef2ff',
+                        },
+                        slate: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            500: '#64748b',
+                            50: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { scroll-behavior: smooth; }
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2 font-bold text-slate-900 text-lg">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                </div>
+                <span>L2Earn Protocol</span>
+            </div>
+            <a href="/" class="text-sm font-medium text-slate-500 hover:text-indigo-600 transition-colors">Back to App</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-24 pb-16 px-6 text-center bg-white border-b border-slate-200">
+        <div class="max-w-3xl mx-auto">
+            <div class="inline-block px-3 py-1 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Whitepaper v1.0</div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-6">
+                Decentralized Knowledge <br>
+                <span class="gradient-text">Validation & Monetization</span>
+            </h1>
+            <p class="text-xl text-slate-500 leading-relaxed">
+                A protocol that transforms human learning into a liquid, verifiable asset using AI-driven Proof of Knowledge (PoK).
+            </p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-3xl mx-auto px-6 py-16 space-y-20">
+
+        <!-- Abstract -->
+        <section>
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">1. Abstract</h2>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                The traditional education market is plagued by three core inefficiencies: low completion rates, unverifiable credentials, and a lack of direct financial incentives for learners. 
+                <strong>L2Earn</strong> introduces a new paradigm: <em>Learn-to-Earn</em>. By integrating the <strong>FH-DREAM</strong> cognitive engine with a localized blockchain consensus layer, we allow users to mint "Knowledge Blocks" that serve as proof of skill, unlocking direct liquidity from educational grants and corporate recruiting pools.
+            </p>
+        </section>
+
+        <!-- The Problem -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                <h3 class="text-lg font-bold text-rose-600 mb-2">The Problem</h3>
+                <ul class="space-y-3 text-slate-600 text-sm">
+                    <li class="flex items-start"><span class="mr-2">•</span> <span><strong>3% Completion Rates:</strong> MOOCs fail to retain users due to passive consumption.</span></li>
+                    <li class="flex items-start"><span class="mr-2">•</span> <span><strong>Credential Inflation:</strong> Certificates are easily forged or obtained without true mastery.</span></li>
+                    <li class="flex items-start"><span class="mr-2">•</span> <span><strong>Illiquid Knowledge:</strong> Years of study do not translate to value until a job is secured.</span></li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                <h3 class="text-lg font-bold text-emerald-600 mb-2">The Solution</h3>
+                <ul class="space-y-3 text-slate-600 text-sm">
+                    <li class="flex items-start"><span class="mr-2">•</span> <span><strong>Proof of Knowledge (PoK):</strong> AI-verified, cryptographic proof of mastery.</span></li>
+                    <li class="flex items-start"><span class="mr-2">•</span> <span><strong>Liquid Skills:</strong> Earn $L2E tokens immediately upon mastering a module.</span></li>
+                    <li class="flex items-start"><span class="mr-2">•</span> <span><strong>FH-DREAM Engine:</strong> A cognitive framework that guarantees deep understanding, not just rote memorization.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Proof of Knowledge -->
+        <section>
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">2. Proof of Knowledge (PoK) Consensus</h2>
+            <p class="text-slate-600 mb-6">
+                Unlike traditional "Learn to Earn" models that pay for mere attendance, L2Earn utilizes a <strong>Proof of Knowledge</strong> mechanism.
+            </p>
+            
+            <div class="bg-slate-900 rounded-xl p-6 text-slate-300 font-mono text-sm overflow-x-auto">
+                <div class="flex flex-col space-y-2">
+                    <span class="text-indigo-400">// The PoK Lifecycle</span>
+                    <span>1. Learner -> Submits Insight/Quiz (Step D in FH-DREAM)</span>
+                    <span>2. AI Node (Gemini) -> Validates semantic depth & uniqueness.</span>
+                    <span>3. Oracle Network -> Cross-references with market data.</span>
+                    <span>4. Smart Contract -> Mints <span class="text-yellow-400">KnowledgeBlock(SBT)</span> + Releases <span class="text-emerald-400">$L2E</span>.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tokenomics -->
+        <section>
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">3. Tokenomics ($L2E)</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex-1">
+                    <h3 class="font-bold text-slate-800 mb-3">Utility</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600">
+                        <li><strong>Governance:</strong> Vote on new curriculum tracks.</li>
+                        <li><strong>Access:</strong> Burn $L2E to access "Creator Studio" AI tools.</li>
+                        <li><strong>Staking:</strong> Creators stake $L2E to publish courses. Slashing occurs if content is flagged as low quality.</li>
+                    </ul>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-slate-800 mb-3">Distribution</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-wider mb-1">
+                                <span>Learn-to-Earn Pool</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-indigo-600 w-[40%]"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-wider mb-1">
+                                <span>Creator Fund</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-violet-500 w-[30%]"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-wider mb-1">
+                                <span>DAO Treasury</span>
+                                <span>20%</span>
+                            </div>
+                            <div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-slate-400 w-[20%]"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section>
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">4. Technical Architecture</h2>
+            <div class="relative border-l-2 border-slate-200 pl-8 space-y-8">
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-white border-4 border-indigo-600"></div>
+                    <h3 class="font-bold text-slate-800">Layer 1: Identity & Data (Off-chain)</h3>
+                    <p class="text-sm text-slate-600 mt-1">Supabase manages user profiles, rich media content, and real-time interaction states. Authentication handles Web2 (Email) and Web3 (Wallet) login mapping.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-white border-4 border-violet-500"></div>
+                    <h3 class="font-bold text-slate-800">Layer 2: The Cognitive Engine (AI)</h3>
+                    <p class="text-sm text-slate-600 mt-1">Google Gemini API powers the <strong>FH-DREAM</strong> engine, acting as the primary validator for "soft skills" that traditional code cannot verify.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-white border-4 border-emerald-500"></div>
+                    <h3 class="font-bold text-slate-800">Layer 3: Settlement (On-chain)</h3>
+                    <p class="text-sm text-slate-600 mt-1">Optimism / Arbitrum (L2) handles the micro-transactions of $L2E tokens and the minting of Soulbound Tokens (SBTs) for course completion.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section class="bg-indigo-900 text-indigo-100 rounded-2xl p-8 text-center">
+            <h2 class="text-2xl font-bold text-white mb-4">Roadmap</h2>
+            <div class="flex justify-center gap-8 text-sm">
+                <div>
+                    <div class="font-bold text-white text-lg">Q1 2024</div>
+                    <div>MVP & AI Engine</div>
+                </div>
+                <div class="w-px bg-indigo-700"></div>
+                <div>
+                    <div class="font-bold text-white text-lg">Q2 2024</div>
+                    <div>Token Launch (Testnet)</div>
+                </div>
+                <div class="w-px bg-indigo-700"></div>
+                <div>
+                    <div class="font-bold text-white text-lg">Q3 2024</div>
+                    <div>Mainnet & DAO</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-50 border-t border-slate-200 py-12 text-center text-slate-500 text-sm">
+        <p>&copy; 2024 L2Earn Foundation. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

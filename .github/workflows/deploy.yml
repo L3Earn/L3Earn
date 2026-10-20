@@ -1,0 +1,69 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# GitHub Pages 部署所需的最小权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只允许一个 Pages 部署；不取消进行中的部署，避免线上出现半成品
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # pnpm 版本从 package.json 的 packageManager 字段读取（不要重复指定 version，
+      # 两者同时存在会让 action 报 "Multiple versions of pnpm specified"）。
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 项目站点部署在子路径 https://<owner>.github.io/<repo>/，
+      # base 由 BASE_PATH 显式传入（vite.config.ts 也会从 GITHUB_REPOSITORY 推导）。
+      # 若仓库名是 <owner>.github.io（用户主页站点），base 应为 "/"。
+      - name: Build
+        run: BASE_PATH=/${{ github.event.repository.name }}/ pnpm build
+
+      # GitHub Pages 上没有服务端路由：用 404.html 做 SPA 兜底；
+      # .nojekyll 让 Pages 原样发布 _ 开头的文件（Vite 的 assets 里可能有）。
+      - name: Prepare Pages artifacts
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

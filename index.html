@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L2Earn: Evolve Your Productivity</title>
+
+    <!--
+      生产构建的内容安全策略（CSP）。
+      - script-src 'self'：只允许加载本站打包后的脚本，禁止任何第三方脚本
+        （BYOK 场景下，同源脚本能读到浏览器里保存的 API key，所以不引外部 JS）。
+      - connect-src 'self' https:：本应用是开放式多厂商 BYOK，端点由用户运行时填写，
+        因此不能写死单个域名；只允许 https 出站（含 OpenAI / Anthropic 兼容端点）。
+      - style-src 'self' 'unsafe-inline' https://fonts.googleapis.com：
+        Tailwind 产物是外链 CSS；组件里有内联样式（<style>、style 属性）和
+        Google Fonts 样式表，所以需要 'unsafe-inline' 与 fonts.googleapis.com。
+      - img-src 'self' data: https:：头像/插图可能来自 data URI 或 https。
+      - font-src 'self' https://fonts.gstatic.com：Google Fonts 的字体文件域名。
+      说明：dev server 下由 vite.config.ts 的 devCspPlugin 移除本 meta，
+      因为 React Fast Refresh / HMR 需要内联脚本和 ws: 连接。
+      详细解释见 README.md「安全姿态」一节。
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; object-src 'none'"
+    />
+
+    <!-- Google Fonts（Inter）。与 CSP 的 style-src / font-src 白名单对应。 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased">
+    <!--
+      可选：部署方可通过 public/config.js 预置默认端点/模型（不含密钥），
+      详见 public/config.example.js。默认放了一个空配置，不会 404；
+      必须是普通 script（非 module）：module 会被延迟执行，来不及在入口前生效。
+      CSP 的 script-src 'self' 已允许这个同源脚本。
+    -->
+    <script src="/config.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

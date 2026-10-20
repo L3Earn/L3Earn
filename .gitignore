@@ -1,0 +1,34 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+dist-ssr/
+
+# 测试 / 覆盖率 / Cypress 录屏
+coverage/
+cypress/screenshots/
+cypress/videos/
+
+# 环境变量：仓库根目录的 .env 含真实 LLM key，绝不能入库
+.env
+.env.*
+!.env.example
+
+# 日志
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 编辑器 / 操作系统
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.local
+*.tsbuildinfo
+
+# 历史归档（剥离 AI Studio 前的快照）：保留在本地可追溯，二进制 zip 不入库
+legacy/*.zip
