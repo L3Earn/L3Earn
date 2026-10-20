@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { X, Mail, Lock, ArrowRight, Loader2, Github, Chrome } from 'lucide-react';
+import { X, Mail, Lock, ArrowRight, Loader2, Github, Chrome, Info } from 'lucide-react';
+import { DEMO_AUTH, DEMO_AUTH_PREFILL } from '../data/demoContent';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -10,8 +11,9 @@ interface AuthModalProps {
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // 测试期：默认填入一套格式合法的演示账号，省去每次手动输入
+  const [email, setEmail] = useState(() => (DEMO_AUTH_PREFILL ? DEMO_AUTH.email : ''));
+  const [password, setPassword] = useState(() => (DEMO_AUTH_PREFILL ? DEMO_AUTH.password : ''));
   const [isLoading, setIsLoading] = useState(false);
 
   if (!isOpen) return null;
@@ -89,6 +91,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLogin }
                         />
                     </div>
                 </div>
+
+                {DEMO_AUTH_PREFILL && (
+                    <div className="flex items-start space-x-2 rounded-xl border border-indigo-100 bg-indigo-50 px-3 py-2 text-[11px] leading-relaxed text-indigo-700">
+                        <Info size={13} className="mt-0.5 shrink-0" />
+                        <span>
+                            测试模式：已预填演示账号 <code className="font-mono">{DEMO_AUTH.email}</code>，
+                            直接点登录即可（当前登录为前端模拟，不校验密码）。
+                        </span>
+                    </div>
+                )}
 
                 <button 
                     type="submit"

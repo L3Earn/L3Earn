@@ -156,4 +156,14 @@ pnpm test              # 全部 Jest 测试
 pnpm test:watch        # watch 模式
 pnpm test:coverage     # 覆盖率报告
 pnpm test:ci           # CI 模式（单次 + 覆盖率）
+pnpm verify            # 提交前：typecheck + typecheck:test + test:ci + build
 ```
+
+## 文档
+
+| 文档 | 内容 |
+|---|---|
+| [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) | 开发手册：服务层 API 参考、改动指南、测试、调试与排障 |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 架构脉络：分层与依赖方向、运行边界、扩展点 |
+| [AGENTS.md](AGENTS.md) | 协作约定：命名、目录、风格 |
+| [roadmap.md](roadmap.md) | 产品与技术路线（愿景，非现状） |

@@ -19,6 +19,20 @@ export const LANGUAGES = [
 
 export type LanguageCode = (typeof LANGUAGES)[number]["code"];
 
+/**
+ * 测试期演示登录凭据。
+ *
+ * ⚠️ 仅用于测试/演示：登录目前是纯前端模拟（不校验真实账号，见 AuthModal），
+ * 所以预填只是省去手动输入。正式接入 Supabase Auth 前，把
+ * `DEMO_AUTH_PREFILL` 改为 false 即可同时关闭预填与提示文案。
+ */
+export const DEMO_AUTH_PREFILL = true;
+
+export const DEMO_AUTH = {
+  email: "demo@l2earn.dev",
+  password: "Demo1234!",
+} as const;
+
 /** Learning Tree 视图的默认示例路线（前端 → 全栈架构师） */
 export const DEMO_LEARNING_PATH: LearningPathData = {
   roadmapTitle: "Strategic Path: Frontend to Full Stack Architect",

@@ -4,6 +4,8 @@
 
 L2Earn is a web application that helps users learn valuable skills and generate value from their knowledge. It uses an open LLM layer (OpenAI Chat Completions / Anthropic Messages compatible, BYOK: the user supplies their own endpoint and key at runtime) to generate personalized career roadmaps and course content, with Supabase as the backend for data persistence (optional; falls back to built-in mock data). The frontend is a static SPA deployed to GitHub Pages.
 
+Developer handbook: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) (service APIs, how-to guides, testing, troubleshooting). Architecture spine: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
 ## Build Commands
 
 ```bash
