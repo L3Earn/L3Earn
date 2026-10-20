@@ -1,0 +1,14 @@
+# pnpm 11 的配置入口（package.json 的 pnpm 字段已不再读取）。
+#
+# 依赖的构建脚本不再默认执行。这里声明允许执行的那几个：
+# 它们用于取得原生二进制（本地装依赖时有用）。
+onlyBuiltDependencies:
+  - esbuild
+  - "@swc/core"
+  - unrs-resolver
+
+# 说明：
+# - Cypress 故意不在此列：它的 postinstall 会下载浏览器二进制（CI 用不到、且很慢）。
+#   需要跑 e2e 时手动执行 `pnpm exec cypress install`。
+# - CI 的 install 步骤统一加 `--ignore-scripts`：构建产物不依赖任何 postinstall，
+#   且 pnpm 在 CI 环境下会因「存在未批准的构建脚本」而直接失败（ERR_PNPM_IGNORED_BUILDS）。

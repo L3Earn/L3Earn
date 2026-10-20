@@ -37,7 +37,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        # --ignore-scripts：构建不需要任何 postinstall（esbuild / @swc/core 的二进制
+        # 来自可选的平台包）。同时 pnpm 在 CI 环境下会因「存在未批准的构建脚本」
+        # 直接失败（ERR_PNPM_IGNORED_BUILDS），这里显式关闭即可。
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       # 项目站点部署在子路径 https://<owner>.github.io/<repo>/，
       # base 由 BASE_PATH 显式传入（vite.config.ts 也会从 GITHUB_REPOSITORY 推导）。
