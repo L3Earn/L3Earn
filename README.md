@@ -6,7 +6,8 @@
 没有自建后端；AI 能力采用 **BYOK（Bring Your Own Key）**——由使用者在浏览器里填写自己的
 模型服务地址与密钥，直接连到 OpenAI / Anthropic 兼容端点。生产环境通过 GitHub Pages 发布。
 
-- 线上地址：`https://<你的 GitHub 用户名>.github.io/l2earn/`（仓库名不是 `l2earn` 时替换路径）
+- 仓库：`git@github.com:L3Earn/L3Earn.git`
+- 线上地址：<https://l3earn.github.io/L3Earn/>（仓库名不同时替换路径，`base` 会自动跟随）
 - 无服务器、无构建期密钥：产物里不含任何 API key
 
 ## 技术栈
@@ -42,8 +43,8 @@ pnpm preview    # 本地预览 dist/，默认 http://localhost:4173（子路径�
 子路径构建可以本地验证：
 
 ```bash
-BASE_PATH=/l2earn/ pnpm build
-BASE_PATH=/l2earn/ pnpm preview      # → http://localhost:4173/l2earn/
+BASE_PATH=/L3Earn/ pnpm build
+BASE_PATH=/L3Earn/ pnpm preview      # → http://localhost:4173/L3Earn/
 ```
 
 ## 部署到 GitHub Pages
@@ -59,7 +60,7 @@ GitHub Pages 的站点位置决定资源前缀（`vite.config.ts` 的 `base`）�
 
 | 场景 | 线上地址 | `base` |
 |---|---|---|
-| 项目站点（仓库名 `l2earn`） | `https://<owner>.github.io/l2earn/` | `/l2earn/` |
+| 项目站点（仓库名 `L3Earn`） | `https://l3earn.github.io/L3Earn/` | `/L3Earn/` |
 | 用户/组织主页（仓库名 `<owner>.github.io`） | `https://<owner>.github.io/` | `/` |
 
 推导优先级（见 `vite.config.ts`）：

@@ -152,7 +152,7 @@ push main
 | 仓库名以 `.github.io` 结尾 | `/`（用户主页站点） |
 | 本地 | `/` |
 
-本地验证子路径构建：`BASE_PATH=/l2earn/ pnpm build && BASE_PATH=/l2earn/ pnpm preview`。
+本地验证子路径构建：`BASE_PATH=/L3Earn/ pnpm build && BASE_PATH=/L3Earn/ pnpm preview`。
 
 ## 8. 扩展点
 
@@ -173,7 +173,7 @@ pnpm typecheck        # 应用层（不含测试/归档/e2e）
 pnpm typecheck:test   # 测试层（jest 环境）
 pnpm test             # 单测
 pnpm build            # 生产构建
-BASE_PATH=/l2earn/ pnpm build   # 子路径构建
+BASE_PATH=/L3Earn/ pnpm build   # 子路径构建
 ```
 
 ## 10. 历史归档

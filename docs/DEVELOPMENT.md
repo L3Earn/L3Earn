@@ -56,11 +56,11 @@ pnpm test -- --testNamePattern="Anthropic" # 按用例名
 ### 子路径构建（模拟 GitHub Pages）
 
 ```bash
-BASE_PATH=/l2earn/ pnpm build
-BASE_PATH=/l2earn/ pnpm preview   # http://localhost:4173/l2earn/
+BASE_PATH=/L3Earn/ pnpm build
+BASE_PATH=/L3Earn/ pnpm preview   # http://localhost:4173/L3Earn/
 ```
 
-构建产物里资源前缀应为 `/l2earn/assets/*`；如果是 `/assets/*`，说明 base 没生效。
+构建产物里资源前缀应为 `/L3Earn/assets/*`；如果是 `/assets/*`，说明 base 没生效。
 
 ---
 
@@ -425,9 +425,9 @@ GitHub Actions（.github/workflows/deploy.yml）
 本地复现线上路径：
 
 ```bash
-BASE_PATH=/l2earn/ pnpm build
-grep -o 'src="[^"]*"' dist/index.html     # 应看到 /l2earn/assets/... 与 /l2earn/config.js
-BASE_PATH=/l2earn/ pnpm preview
+BASE_PATH=/L3Earn/ pnpm build
+grep -o 'src="[^"]*"' dist/index.html     # 应看到 /L3Earn/assets/... 与 /L3Earn/config.js
+BASE_PATH=/L3Earn/ pnpm preview
 ```
 
 ---
@@ -469,7 +469,7 @@ BASE_PATH=/l2earn/ pnpm preview
    `CoursePlayer` 与 `CreatorStudio` 都走这条路径。CSP 是第二道防线。
 5. **CORS**：浏览器直连第三方端点，没有代理；端点必须放行跨域。
    Anthropic 还需 `anthropic-dangerous-direct-browser-access`（适配器自动加）。
-6. **静态托管没有服务端路由**：刷新 `/l2earn/xxx` 需要 `dist/404.html` 兜底；
+6. **静态托管没有服务端路由**：刷新 `/L3Earn/xxx` 需要 `dist/404.html` 兜底；
    当前应用是单页状态机，只有根路径，暂无深链问题。
 7. **`.env` 不再影响 AI 配置**：AI 是运行时 BYOK；`.env` 只用于可选的 `VITE_SUPABASE_*`。
 8. **`legacy/` 不参与任何检查**：别把新代码放进 `legacy/`，也别指望里面能编译。

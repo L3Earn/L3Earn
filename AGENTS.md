@@ -17,8 +17,8 @@ pnpm build            # Build for production (output: dist/)
 pnpm preview          # Preview production build
 
 # Build against a GitHub Pages sub-path
-BASE_PATH=/l2earn/ pnpm build
-BASE_PATH=/l2earn/ pnpm preview   # http://localhost:4173/l2earn/
+BASE_PATH=/L3Earn/ pnpm build
+BASE_PATH=/L3Earn/ pnpm preview   # http://localhost:4173/L3Earn/
 
 # Type checking (app code / test code are split across two tsconfigs)
 pnpm typecheck        # tsc -p tsconfig.json (app only; legacy/, cypress/, __tests__ excluded)
@@ -187,7 +187,7 @@ try {
 
 - There is no server, no runtime `process.env`, and no secrets at runtime. Everything is built at CI time
   and served as static files from `dist/` (published via `.github/workflows/deploy.yml`).
-- The site is served from a sub-path (`/l2earn/`) unless the repo is `<owner>.github.io`; `base` is
+- The site is served from a sub-path (`/L3Earn/`) unless the repo is `<owner>.github.io`; `base` is
   derived from `BASE_PATH` / `GITHUB_REPOSITORY` in `vite.config.ts`. A wrong `base` means 404s on
   `/assets/*`.
 - Since there are no server routes, `dist/404.html` (a copy of `index.html`) and `dist/.nojekyll` are
