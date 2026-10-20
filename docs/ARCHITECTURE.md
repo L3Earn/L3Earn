@@ -32,6 +32,7 @@ L2Earn = **纯静态 SPA**（GitHub Pages）+ **浏览器 BYOK 的开放式 AI �
 │              ├─ providers/openai     Chat Completions 适配       │
 │              ├─ providers/anthropic  Messages 适配               │
 │              ├─ presets.ts          厂商预设（只是填默认值）      │
+│              ├─ diagnostics.ts      请求日志环形缓冲（调试面板）  │
 │              └─ json.ts             JSON 抽取 + SVG 清洗         │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -44,6 +45,7 @@ L2Earn = **纯静态 SPA**（GitHub Pages）+ **浏览器 BYOK 的开放式 AI �
 | `components/` 只调 `llmService.ts` / `dbService.ts` 的导出函数 | 保持可替换、可单测 |
 | `services/llm/*` 不认识业务类型（CoursePlan 等） | 它只收发文本，业务结构在 `llmService.ts` 校验 |
 | 不允许构建期注入任何密钥 | 产物公开，`vite.config.ts` 的 `define` 已移除 LLM 变量 |
+| `import.meta.env` 只在 `index.tsx` 读 | 它是 ESM 语法，Jest（CJS）无法解析；组件/服务通过 `services/runtimeInfo.ts` 拿注入值 |
 | 不允许引入第三方 `<script>` | CSP `script-src 'self'`，且同源脚本能读到 key |
 
 ## 3. 三条运行边界
@@ -162,6 +164,7 @@ push main
 | 新的持久化后端 | 替换 `services/dbService.ts` 的实现，保持导出函数签名 |
 | 统一预置端点（自托管） | 把 `docs/config.example.js` 复制为 `public/config.js`，写 `window.__L2EARN_CONFIG__`（**不含 key**） |
 | 新视图 | `types.ts` → `components/` → `App.tsx` 的 lazy + 分支 |
+| 调试/观测 | 请求日志在 `services/llm/diagnostics.ts`（内存环形缓冲，50 条，不含 key 与正文），侧边栏「调试」面板消费它 |
 
 ## 9. 验证
 

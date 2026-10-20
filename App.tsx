@@ -16,6 +16,7 @@ import {
   Wallet,
   Sparkles,
   Loader2,
+  Bug,
   User as UserIcon,
   FileText,
 } from "lucide-react";
@@ -46,6 +47,9 @@ const SettingsModal = React.lazy(() =>
 );
 const AuthModal = React.lazy(() =>
   import("./components/AuthModal").then((m) => ({ default: m.AuthModal })),
+);
+const DebugPanel = React.lazy(() =>
+  import("./components/DebugPanel").then((m) => ({ default: m.DebugPanel })),
 );
 
 /** 懒加载视图的占位，保持布局不跳动 */
@@ -79,6 +83,7 @@ const App: React.FC = () => {
   // UI State
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isDebugOpen, setIsDebugOpen] = useState(false);
 
   // Data State
   const [courses, setCourses] = useState<Course[]>([]);
@@ -465,6 +470,13 @@ const App: React.FC = () => {
                   <span className="text-sm font-medium">Settings</span>
                 </button>
                 <button
+                  onClick={() => setIsDebugOpen(true)}
+                  className="flex w-full items-center space-x-3 text-slate-500 px-2 cursor-pointer hover:text-slate-800 transition-colors py-2 rounded-lg hover:bg-slate-50"
+                >
+                  <Bug size={20} />
+                  <span className="text-sm font-medium">调试</span>
+                </button>
+                <button
                   onClick={() => {
                     setSelectedCourseId(null);
                     setCurrentView("whitepaper");
@@ -482,6 +494,13 @@ const App: React.FC = () => {
                   className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-50 rounded-lg transition-colors"
                 >
                   <Settings size={20} />
+                </button>
+                <button
+                  onClick={() => setIsDebugOpen(true)}
+                  className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-50 rounded-lg transition-colors"
+                  title="调试"
+                >
+                  <Bug size={20} />
                 </button>
                 <button
                   onClick={() => {
@@ -855,6 +874,13 @@ const App: React.FC = () => {
           onClose={() => setIsSettingsOpen(false)}
           onLogout={handleLogout}
           user={user}
+          onLlmSettingsChange={() => setLlmReady(isLlmReady().ready)}
+        />
+
+        <DebugPanel
+          isOpen={isDebugOpen}
+          onClose={() => setIsDebugOpen(false)}
+          onOpenSettings={() => setIsSettingsOpen(true)}
           onLlmSettingsChange={() => setLlmReady(isLlmReady().ready)}
         />
 

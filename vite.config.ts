@@ -65,6 +65,18 @@ export default defineConfig({
   server: {
     port: 3000,
     host: "0.0.0.0",
+    watch: {
+      // 这些目录不在模块图里：不忽略的话，跑一次 test:coverage 或 build
+      // 会让 dev server 反复整页刷新（coverage/lcov-report 有上千个 html）
+      ignored: [
+        "**/coverage/**",
+        "**/dist/**",
+        "**/legacy/**",
+        "**/.git/**",
+        "**/cypress/screenshots/**",
+        "**/cypress/videos/**",
+      ],
+    },
   },
 
   // 注意：不再有任何 LLM 环境变量注入（define）。

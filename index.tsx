@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { configureSupabase } from './services/supabase';
+import { configureRuntimeInfo } from './services/runtimeInfo';
 
 /**
  * 入口层是唯一读取构建期环境变量的地方：
@@ -14,6 +15,11 @@ configureSupabase(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY,
 );
+
+configureRuntimeInfo({
+  baseUrl: import.meta.env.BASE_URL,
+  mode: import.meta.env.DEV ? 'dev' : 'prod',
+});
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
