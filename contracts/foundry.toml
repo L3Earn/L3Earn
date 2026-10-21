@@ -1,0 +1,25 @@
+[profile.default]
+src = "src"
+test = "test"
+out = "out"
+# 本项目刻意零外部依赖：合约不引 OpenZeppelin，测试自带最小 cheatcode 垫片，
+# 因此不需要 `lib/` 与 remappings。
+libs = []
+solc_version = "0.8.24"
+optimizer = true
+optimizer_runs = 200
+via_ir = false
+# 允许通过 `--via-ir` 切换；CI 里默认不开，保持编译速度
+ffi = false
+fs_permissions = [{ access = "read", path = "." }]
+
+[rpc_endpoints]
+local = "http://127.0.0.1:8545"
+bsc_testnet = "https://data-seed-prebsc-1-s1.binance.org:8545"
+bsc = "https://bsc-dataseed.binance.org"
+plasma_testnet = "https://testnet-rpc.plasma.to"
+plasma = "https://rpc.plasma.to"
+
+[etherscan]
+bsc_testnet = { key = "${BSCSCAN_API_KEY}", chain = "bsc-testnet" }
+bsc = { key = "${BSCSCAN_API_KEY}", chain = "bsc" }
